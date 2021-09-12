@@ -1,0 +1,21 @@
+local_sql:
+  outputs:
+    dev:
+      type: sqlserver
+      driver: 'ODBC Driver 17 for SQL Server'
+      server: 0.0.0.0
+      port: 1433
+      database: demo
+      schema: dbo
+      user: sa
+      password: ITsC0mpl1cat3d
+    prod:
+      type: sqlserver
+      driver: 'ODBC Driver 17 for SQL Server'
+      server: 0.0.0.0
+      port: 1433
+      database: prod
+      schema: dbo
+      user: sa
+      password: ITsC0mpl1cat3d
+  target: dev
