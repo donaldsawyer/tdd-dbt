@@ -10,11 +10,22 @@ To run this demo, the following applications must be installed.
 |Python|[Python 3.8.2](https://www.python.org/downloads/macos/)||
 |Docker|[docker desktop](https://www.cprime.com/resources/blog/docker-on-mac-with-homebrew-a-step-by-step-tutorial/) (really only need docker)<br><ul><li>docker desktop 3.3.3</li><li>docker 20.10.6</li></ul>||
 |dbt|[dbt 0.20.1_1](https://docs.getdbt.com/dbt-cli/installation)||
-|dbt-sqlserver plugin|0.20.0||
+|dbt-sqlserver plugin|0.19.0<br>*NOTE: 0.20.0 did not install properly, so downgraded to 0.19.0*||
 |dbt-snowflake plugin|0.20.1||
 
-# Setup
-Perform the following steps to build up your development machine running Mac OSX.
+## Helpful References
+Below are some references that have been used to learn more about the activities in this repo. It is recommended to read them for yourself as you start/continue the `dbt` journey.
+
+* DBT Slack Channel [Join Here](https://community.getdbt.com/)
+* Building a Scalable Analytics Architecture with Airflow and dbt
+ * [Part 1](https://www.astronomer.io/blog/airflow-dbt-1)
+ * [Part 2](https://www.astronomer.io/blog/airflow-dbt-2)
+* [Data Mock Tool Plugin](https://github.com/mjirv/dbt-datamocktool)
+* [GitLab dbt Guide](https://about.gitlab.com/handbook/business-technology/data-team/platform/dbt-guide/)
+* [dbt coves](https://pypi.org/project/dbt-coves/)
+
+# Mac Setup
+
 
 ## Docker Setup
 
