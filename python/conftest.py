@@ -2,6 +2,7 @@ import pytest
 import pyodbc
 import os
 
+
 @pytest.fixture(scope="session")
 def mssql_conn(pytestconfig):
     '''
@@ -13,11 +14,9 @@ def mssql_conn(pytestconfig):
     if 'db' not in os.environ or 'pwd' not in os.environ:
         raise NameError('db and pwd environment variables required for local MSSQL connection')
     mssql_conn = pyodbc.connect(driver="ODBC Driver 17 for SQL Server",
-                    server='0.0.0.0,1433',
-                    database=f'{os.environ["db"]}',
-                    UID='SA',
-                    PWD=f'{os.environ["pwd"]}'
-                )
+                                server='0.0.0.0,1433',
+                                database=f'{os.environ["db"]}',
+                                UID='SA',
+                                PWD=f'{os.environ["pwd"]}'
+                                )
     yield mssql_conn
-
-
