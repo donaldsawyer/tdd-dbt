@@ -1,6 +1,13 @@
+import os
 import pytest
 import pyodbc
-import os
+import subprocess
+
+
+def pytest_sessionstart():
+    print('Setting up databases')
+    subprocess.run(f'../docker/initialize_mssql.sh', shell=True)
+    return
 
 
 @pytest.fixture(scope="session")
