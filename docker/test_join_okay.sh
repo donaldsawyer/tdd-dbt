@@ -1,10 +1,6 @@
 # dbt parameters
-db_name=demo
+db_name=dev
 sqlcmd_base="sqlcmd -S 127.0.0.1,1433 -U sa -P ITsC0mpl1cat3d "
-
-run_sqlcmd() {
-    sqlcmd -S 127.0.0.1,1433 -U sa -P ITsC0mpl1cat3d ${1}
-}
 
 # create the source tables
 # run_sqlcmd "-v db_name=$db_name -i docker/ontime_data.sql"

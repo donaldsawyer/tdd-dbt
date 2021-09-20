@@ -41,12 +41,12 @@ seeds:
   tdd_dbt:
     ontime_data01_01_joinok:
       enabled: true
-      database: demo
+      database: dev
       alias: ontime_data
       full_refresh: true
     carrier_code_01_joinok:
       enabled: true
-      database: demo
+      database: dev
       alias: carrier_code
       full_refresh: true
       quote_columns: true
