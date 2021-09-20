@@ -34,5 +34,19 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   tdd_dbt:
       # Applies to all files under models/example/
-      example:
+      flight_data:
           materialized: view
+
+seeds:
+  tdd_dbt:
+    ontime_data01_01_joinok:
+      enabled: true
+      database: demo
+      alias: ontime_data
+      full_refresh: true
+    carrier_code_01_joinok:
+      enabled: true
+      database: demo
+      alias: carrier_code
+      full_refresh: true
+      quote_columns: true
