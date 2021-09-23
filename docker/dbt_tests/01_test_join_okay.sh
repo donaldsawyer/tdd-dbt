@@ -27,7 +27,7 @@ dbt run --target dev --vars "{db_name: $db_name, schema_name: dbo_01_joinok}"
 # execute the tests
 # dbt test --target dev --vars "{db_name: $db_name}"
 # dbt test --target dev --vars "{db_name: $db_name}" tag:01_joinok
-dbt test --target dev --vars "{db_name: $db_name, schema_name: dbo_01_joinok}" --models ontime_denorm --exclude tag:02_joinunknown tag:03_joincombined
+dbt test --target dev --vars "{db_name: $db_name, schema_name: dbo_01_joinok}" --models ontime_denorm --exclude tag:02_joinunknown tag:03_joincombined tag:04_arrived_flag
 
 eval "$sqlcmd_base -Q \"drop table dev.dbo_01_joinok.ontime_data\""
 eval "$sqlcmd_base -Q \"drop table dev.dbo_01_joinok.carrier_code\""

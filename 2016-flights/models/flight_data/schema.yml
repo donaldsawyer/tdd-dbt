@@ -9,8 +9,6 @@ models:
           description: "Year the flight occurred."
           tests:
               - not_null
-          tags:
-            - "base"
         - name: month
           description: "Month the flight occurred."
           tests:
@@ -37,3 +35,5 @@ models:
           description: "Origin airport code."
           tests:
               - not_null
+        - name: arrived_flag
+          description: "Whether the flight arrived or not. NULL if unable to determine."

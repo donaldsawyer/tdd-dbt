@@ -105,3 +105,25 @@ seeds:
         database: dev
         schema: 03_joincombined
         tags: 03_joincombined
+    04_arrived_flag:
+      04_ontime_data_arrived_flag:
+        enabled: true
+        database: dev
+        schema: 04_arrived_flag
+        alias: ontime_data
+        full_refresh: true
+        tags: 04_arrived_flag
+      04_carrier_code_arrived_flag:
+        enabled: true
+        database: dev
+        schema: 04_arrived_flag
+        alias: carrier_code
+        full_refresh: true
+        quote_columns: true
+        tags: 04_arrived_flag
+      04_ontime_denorm_arrived_flag_expected:
+        enabled: true
+        full_refresh: true
+        database: dev
+        schema: 04_arrived_flag
+        tags: 04_arrived_flag
