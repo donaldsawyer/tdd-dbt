@@ -2,36 +2,38 @@
 version: 2
 
 models:
-    - name: ontime_denorm
-      description: "On-time data used for checking carrier (with carrier description) flight stats."
-      columns:
-          - name: year
-            description: "Year the flight occurred."
-            tests:
-                - not_null
-          - name: month
-            description: "Month the flight occurred."
-            tests:
-                - not_null
-          - name: day_of_month
-            description: "Day of the month the flight occurred."
-            tests:
-                - not_null
-          - name: carrier_code
-            desription: "The 3-character code representing the carrier of the flight."
-            tests:
-                - not_null
-          - name: carrier_name
-            description: "The description/name of the carrier of the flight."
-          - name: flight_number
-            description: "Flight number."
-            tests:
-                - not_null
-          - name: origin
-            description: "Origin airport code."
-            tests:
-                - not_null
-          - name: destination
-            description: "Destination arirport code."
-            tests:
-                - not_null
+  - name: ontime_denorm
+    description: "On-time data used for checking carrier (with carrier description) flight stats."
+    columns:
+        - name: year
+          description: "Year the flight occurred."
+          tests:
+              - not_null
+          tags:
+            - "base"
+        - name: month
+          description: "Month the flight occurred."
+          tests:
+              - not_null
+        - name: day_of_month
+          description: "Day of the month the flight occurred."
+          tests:
+              - not_null
+        - name: carrier_code
+          desription: "The 3-character code representing the carrier of the flight."
+          tests:
+              - not_null
+        - name: carrier_desc
+          description: "The description/name of the carrier of the flight."
+        - name: flight_number
+          description: "Flight number."
+          tests:
+              - not_null
+        - name: destination
+          description: "Destination arirport code."
+          tests:
+              - not_null
+        - name: origin
+          description: "Origin airport code."
+          tests:
+              - not_null
