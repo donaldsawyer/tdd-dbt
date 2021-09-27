@@ -1,8 +1,14 @@
-use $(db_name)
+USE $(db_name)
+GO
 
 CREATE PROCEDURE dbo.sp_CreateOntimeCarrierTable
 AS
 BEGIN
+    IF EXISTS (SELECT * FROM sys.objects WHERE type = 'U' AND name = 'ontime_denorm')
+        BEGIN
+            DROP TABLE dbo.ontime_denorm
+        END
+
     CREATE TABLE dbo.ontime_denorm(
         year int,
         month tinyint,
@@ -26,21 +32,21 @@ BEGIN
         destination,
         arrived_flag
     )
-
     SELECT
         OD.year,
         OD.month,
         OD.day_of_month,
-        CC.carrier_code,
-        CC.carrier_desc,
-        OD.flight_number,
+        OD.carrier,
+        COALESCE(CC.description, 'UNKNOWN'),
+        OD.fl_num,
         OD.origin,
-        OD.destination,
-        CASE WHEN OD.concelled != 0 OR OD.diverted != 0 THEN 'N'
+        OD.dest,
+        CASE WHEN OD.cancelled != 0 OR OD.diverted != 0 THEN 'N'
             WHEN OD.arr_delay IS NOT NULL THEN 'Y'
             ELSE NULL
             END as arrived_flag
     FROM dbo.ontime_data OD
-    JOIN dbo.carrier_code CC
-        ON CC.carrier = OD.carrier
+    LEFT JOIN dbo.carrier_code CC
+        ON OD.carrier = CC.code
 END
+GO

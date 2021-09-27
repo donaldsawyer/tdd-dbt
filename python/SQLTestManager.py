@@ -1,9 +1,9 @@
 import pyodbc
-from pandas import Dataframe, read_sql
+import pandas as pd
 
 
 class SQLTestManager:
-    def __init__(self, connection: pyodbc.Connection, base_query):
+    def __init__(self, connection: pyodbc.Connection, base_query=''):
         self.connection = connection
         self.base_query = base_query
 
@@ -11,25 +11,27 @@ class SQLTestManager:
         cursor = self.connection.cursor()
         query = f"exec {name}"
         if not params:
-            df = read_sql(query, self.connection)
+            cursor.execute(query)
         else:
             for k, v in params.items():
                 query = query + f" @{k} = '{v}',"
 
             query.rstrip(',')
-            df = read_sql(query, self.connection)
+            cursor.execute(query)
 
         cursor.commit()
-        return df
+        cursor.close()
+        return
 
     def exec_query(self, filters={}):
         query = self.base_query
         if not filters:
-            df = read_sql(query, self.connection)
+            df = pd.read_sql(query, self.connection)
         else:
+            query = query + " WHERE "
             for k, v in filters.items():
-                key = key
-                value = value
+                key = k
+                value = v
                 operator = '='
                 if type(v) is dict:
                     value = v['value']
@@ -38,20 +40,19 @@ class SQLTestManager:
                     value = f"'{value}'"
                 query = query + f" {key} {operator} {value} AND"
             query = query.rstrip(' AND')
-            df = read_sql(query, self.connection)
+            df = pd.read_sql(query, self.connection)
         return df
 
     @staticmethod
-    def are_equal(df1: Dataframe, df2: Dataframe, sort_by, recast={}, replace_blank_strings=False):
+    def are_equal(df1: pd.DataFrame, df2: pd.DataFrame, sort_by, replace_blank_strings=False):
         if replace_blank_strings:
             df1 = df1.replace([''], [None])
             df2 = df2.replace([''], [None])
 
-        if sort_by:
-            if type(sort_by) is str:
-                sort_by = [sort_by]
-            df1 = df1.sort_values(by=sort_by)
-            df2 = df2.sort_values(by=sort_by)
+        if type(sort_by) is str:
+            sort_by = [sort_by]
+        df1 = df1.sort_values(by=sort_by)
+        df2 = df2.sort_values(by=sort_by)
 
         df1 = df1.reindex(sorted(df1.columns), axis=1)
         df2 = df2.reindex(sorted(df2.columns), axis=1)
@@ -62,7 +63,7 @@ class SQLTestManager:
             cols = []
             type_conflict = []
             for col in df1.columns:
-                if df1[col].dtype != df2.dtype:
+                if df1[col].dtype != df2[col].dtype:
                     type_conflict.append(col)
 
                 if not df1[col].equals(df2[col]):

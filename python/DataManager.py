@@ -1,16 +1,18 @@
 import os
 import csv
+import sys
 import pyodbc
 
 
-class DataSetupManager:
+class DataManager:
     def __init__(self, connection: pyodbc.Connection):
         self.connection = connection
 
-    def _create_query(cursor: pyodbc.Cursor, table_name: str, drop_identity_column):
+    @staticmethod
+    def _create_query(cursor: pyodbc.Cursor, table_name: str, drop_identity_column=False):
         resp = cursor.execute(f"SELECT column_name, "
-                              f"COLUMNPROPERTY(OBJECT_ID({os.environ['db']}.{table_name}), COLUMN_NAME, 'IsIdentity') "
-                              f"from information_schema.Columns"
+                              f"COLUMNPROPERTY(OBJECT_ID('dbo.'+TABLE_NAME), COLUMN_NAME, 'IsIdentity') "
+                              f"from information_schema.Columns where table_name = '{table_name}'"
         )
 
         query = f"INSERT INTO {table_name} VALUES("
@@ -31,11 +33,13 @@ class DataSetupManager:
     def _set_nulls_to_none(rows):
         updated_rows = []
         for row in rows:
+            updated_row = []
             for i in row:
                 if type(i) is str and i.upper() == 'NULL':
-                    updated_rows.append(None)
+                    updated_row.append(None)
                 else:
-                    updated_rows.append(row)
+                    updated_row.append(i)
+            updated_rows.append(updated_row)
         return updated_rows
 
     def insert_csv(self, table_name, path):
@@ -53,7 +57,7 @@ class DataSetupManager:
 
     def insert_csv_files(self, csv_paths: dict = {}):
         for table_name, csv_path in csv_paths.items():
-            self.insert_csv(self.connection, table_name, csv_path)
+            self.insert_csv(table_name, csv_path)
         return
 
     def refresh_tables(self, tables: list):
@@ -63,7 +67,7 @@ class DataSetupManager:
 
     def refresh_table(self, table_name: str):
         cursor = self.connection.cursor()
-        query = f"DELETE FROM {os.environ['db']}.{table_name}"
+        query = f"DELETE FROM dbo.{table_name}"
         cursor.execute(query)
         reset_identity = f"DBCC CHECKIDENT ('{table_name}, RESEED, 0')"
         try:
