@@ -51,9 +51,9 @@ class DataSetupManager:
         cursor.close()
         return
 
-    def insert_csv_files(self, connection: pyodbc.Connection, csv_paths: dict = {}):
+    def insert_csv_files(self, csv_paths: dict = {}):
         for table_name, csv_path in csv_paths.items():
-            self.insert_csv(connection, table_name, csv_path)
+            self.insert_csv(self.connection, table_name, csv_path)
         return
 
     def refresh_tables(self, tables: list):

@@ -7,20 +7,20 @@ class SQLTestManager:
         self.connection = connection
         self.base_query = base_query
 
-    def exec_stored_procedure(self, name: str, params = {}):
+    def exec_stored_procedure(self, name: str, params={}):
         cursor = self.connection.cursor()
         query = f"exec {name}"
         if not params:
-            resp = cursor.execute(query)
+            df = read_sql(query, self.connection)
         else:
             for k, v in params.items():
                 query = query + f" @{k} = '{v}',"
 
             query.rstrip(',')
-            resp = cursor.execute(query)
+            df = read_sql(query, self.connection)
 
         cursor.commit()
-        return resp
+        return df
 
     def exec_query(self, filters={}):
         query = self.base_query
