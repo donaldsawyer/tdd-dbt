@@ -33,6 +33,97 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   tdd_dbt:
-      # Applies to all files under models/example/
-      example:
+      # Applies to all files under models/flight_data
+      flight_data:
           materialized: view
+
+seeds:
+  tdd_dbt:
+    01_joinok:
+      01_ontime_data_joinok:
+        enabled: true
+        schema: 01_joinok
+        database: dev
+        alias: ontime_data
+        full_refresh: true
+        tags: 01_joinok
+      01_carrier_code_joinok:
+        enabled: true
+        schema: 01_joinok
+        database: dev
+        alias: carrier_code
+        full_refresh: true
+        quote_columns: true
+        tags: 01_joinok
+      01_ontime_denorm_joinok_expected:
+        enabled: true
+        schema: 01_joinok
+        full_refresh: true
+        database: dev
+        tags: 01_joinok
+    02_joinunknown:
+      02_ontime_data_joinunknown:
+        enabled: true
+        database: dev
+        schema: 02_joinunknown
+        alias: ontime_data
+        full_refresh: true
+        tags: 02_joinunknown
+      02_carrier_code_joinunknown:
+        enabled: true
+        database: dev
+        schema: 02_joinunknown
+        alias: carrier_code
+        full_refresh: true
+        quote_columns: true
+        tags: 02_joinunknown
+      02_ontime_denorm_joinunknown_expected:
+        enabled: true
+        full_refresh: true
+        database: dev
+        schema: 02_joinunknown
+        tags: 02_joinunknown
+    03_joincombined:
+      03_ontime_data_joincombined:
+        enabled: true
+        database: dev
+        schema: 03_joincombined
+        alias: ontime_data
+        full_refresh: true
+        tags: 03_joincombined
+      03_carrier_code_joincombined:
+        enabled: true
+        database: dev
+        schema: 03_joincombined
+        alias: carrier_code
+        full_refresh: true
+        quote_columns: true
+        tags: 03_joincombined
+      03_ontime_denorm_joincombined_expected:
+        enabled: true
+        full_refresh: true
+        database: dev
+        schema: 03_joincombined
+        tags: 03_joincombined
+    04_arrived_flag:
+      04_ontime_data_arrived_flag:
+        enabled: true
+        database: dev
+        schema: 04_arrived_flag
+        alias: ontime_data
+        full_refresh: true
+        tags: 04_arrived_flag
+      04_carrier_code_arrived_flag:
+        enabled: true
+        database: dev
+        schema: 04_arrived_flag
+        alias: carrier_code
+        full_refresh: true
+        quote_columns: true
+        tags: 04_arrived_flag
+      04_ontime_denorm_arrived_flag_expected:
+        enabled: true
+        full_refresh: true
+        database: dev
+        schema: 04_arrived_flag
+        tags: 04_arrived_flag

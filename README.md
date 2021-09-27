@@ -23,6 +23,7 @@ Below are some references that have been used to learn more about the activities
 * [Data Mock Tool Plugin](https://github.com/mjirv/dbt-datamocktool)
 * [GitLab dbt Guide](https://about.gitlab.com/handbook/business-technology/data-team/platform/dbt-guide/)
 * [dbt coves](https://pypi.org/project/dbt-coves/)
+* Flight [data dictionary on BTS.gov](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGK&QO_fu146_anzr=b0-gvzr)
 
 # Mac Setup
 

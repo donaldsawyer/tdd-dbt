@@ -1,0 +1,19 @@
+version: 2
+
+seeds:
+  - name: 01_ontime_denorm_joinok_expected
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('ontime_denorm')
+  - name: 02_ontime_denorm_joinunknown_expected
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('ontime_denorm')
+  - name: 03_ontime_denorm_joincombined_expected
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('ontime_denorm')
+  - name: 04_ontime_denorm_arrived_flag_expected
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('ontime_denorm')

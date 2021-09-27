@@ -5,7 +5,7 @@ local_sql:
       driver: 'ODBC Driver 17 for SQL Server'
       server: 0.0.0.0
       port: 1433
-      database: demo
+      database: dev
       schema: dbo
       user: sa
       password: ITsC0mpl1cat3d
