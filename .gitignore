@@ -133,3 +133,6 @@ dmypy.json
 
 #IntelliJ
 .idea
+
+#Python Assets
+python/assets

@@ -17,8 +17,8 @@ def reset_data(mssql_conn: pyodbc.Connection):
 
 def test_flight_cancelled(mssql_conn: pyodbc.Connection):
     data_paths = {
-        'ontime_data': '../2016-flights/data/01_joinok/01_ontime_data_joinok.csv',
-        'carrier_code': '../2016-flights/data/01_joinok/01_carrier_code_joinok.csv'
+        'ontime_data': '2016-flights/data/01_joinok/01_ontime_data_joinok.csv',
+        'carrier_code': '2016-flights/data/01_joinok/01_carrier_code_joinok.csv'
     }
     data_manager = dm.DataManager(mssql_conn)
     data_manager.insert_csv_files(data_paths)
@@ -42,8 +42,8 @@ def test_flight_cancelled(mssql_conn: pyodbc.Connection):
 
 def test_flight_unknown(mssql_conn: pyodbc.Connection):
     data_paths = {
-        'ontime_data': '../2016-flights/data/02_joinunknown/02_ontime_data_joinunknown.csv',
-        'carrier_code': '../2016-flights/data/02_joinunknown/02_carrier_code_joinunknown.csv'
+        'ontime_data': '2016-flights/data/02_joinunknown/02_ontime_data_joinunknown.csv',
+        'carrier_code': '2016-flights/data/02_joinunknown/02_carrier_code_joinunknown.csv'
     }
     data_manager = dm.DataManager(mssql_conn)
     data_manager.insert_csv_files(data_paths)
@@ -67,8 +67,8 @@ def test_flight_unknown(mssql_conn: pyodbc.Connection):
 
 def test_flight_combined(mssql_conn: pyodbc.Connection):
     data_paths = {
-        'ontime_data': '../2016-flights/data/03_joincombined/03_ontime_data_joincombined.csv',
-        'carrier_code': '../2016-flights/data/03_joincombined/03_carrier_code_joincombined.csv'
+        'ontime_data': '2016-flights/data/03_joincombined/03_ontime_data_joincombined.csv',
+        'carrier_code': '2016-flights/data/03_joincombined/03_carrier_code_joincombined.csv'
     }
     data_manager = dm.DataManager(mssql_conn)
     data_manager.insert_csv_files(data_paths)
@@ -92,8 +92,8 @@ def test_flight_combined(mssql_conn: pyodbc.Connection):
 
 def test_arrived_flag(mssql_conn: pyodbc.Connection):
     data_paths = {
-        'ontime_data': '../2016-flights/data/04_arrived_flag/04_ontime_data_arrived_flag.csv',
-        'carrier_code': '../2016-flights/data/04_arrived_flag/04_carrier_code_arrived_flag.csv'
+        'ontime_data': '2016-flights/data/04_arrived_flag/04_ontime_data_arrived_flag.csv',
+        'carrier_code': '2016-flights/data/04_arrived_flag/04_carrier_code_arrived_flag.csv'
     }
     data_manager = dm.DataManager(mssql_conn)
     data_manager.insert_csv_files(data_paths)
