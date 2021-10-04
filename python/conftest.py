@@ -6,7 +6,7 @@ import subprocess
 
 def pytest_sessionstart():
     print('Setting up databases')
-    subprocess.run(f'../docker/initialize_mssql.sh', shell=True)
+    subprocess.run(f'./docker/initialize_mssql.sh', shell=True)
     return
 
 
