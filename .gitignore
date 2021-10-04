@@ -135,4 +135,4 @@ dmypy.json
 .idea
 
 #Python Assets
-/python/assets
+python/assets
