@@ -25,10 +25,32 @@ Below are some references that have been used to learn more about the activities
 * [dbt coves](https://pypi.org/project/dbt-coves/)
 * Flight [data dictionary on BTS.gov](https://www.transtats.bts.gov/DL_SelectFields.asp?gnoyr_VQ=FGK&QO_fu146_anzr=b0-gvzr)
 
-# Mac Setup
+# Running the Demo
+The demo is pretty straight forward.
 
+Bring up the docker image with SQL Server. From the root project directory:
+```
+docker compose up
+```
+
+Run the python tests from command line:
+```
+db='dev' pwd='ITsC0mpl1cat3d' pytest python/test_sp_CreateOntimeCarrierTable.py
+```
+
+Run the DBT tests from command line:
+```
+docker/run_unit_tests.sh
+```
+
+# [Mac] Setup
+The setup has been done on a Macbook Pro, but has been done on a Windows machine. Theoretically, it should not be much of an issue, but the use of shell scripts may need WSL.
 
 ## Docker Setup
+The setup below is if you wish to set up and run the docker mssql image on your own. Within the demo, the `docker` folder already has a `docker-compose.yml`, so if you're in that directory, all you need to run is:
+```
+docker compose up
+```
 
 **Pull the Docker Image**
 Pull the docker image you'd like to use. The [MS SQL Server dockerhub page](https://hub.docker.com/_/microsoft-mssql-server) is a good resource.
